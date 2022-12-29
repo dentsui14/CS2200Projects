@@ -1,0 +1,44 @@
+CS 2200 Fall 2022
+Project 4
+
+Name:
+GT Username:dtsui9
+
+Problem 1B (FCFS Scheduler)
+----------
+
+1 CPU: 70.8s
+2 CPU: 40.1s
+4 CPU: 37.5s
+
+The relationship is not linear because adding extra CPU's only improves
+Speed linearly when these CPU's are being used (if we process twice as
+fast we should take the half the time to process the same amount [amount =
+rate * time]). Let's say we have 3 processes on the
+Ready queue with 4 CPU's. Having 4 vs 3 CPU's makes no difference because
+In both cases we can only use 3 CPU's. There may be processes that are waiting
+Or they may be terminated so we cannot always fully utilize the increase in CPU's.
+This makes sense when we see that jump from 1->2 CPU's was approximately linear time reduction
+Meaning that both CPU's were being used for most of the time. As we get alot of CPU's
+There are less instances where we can use all of them. At an extreme if we have n processes for sure
+having N > n CPU's makes no improvement compared to n.
+
+Problem 2B (Round-Robin)
+----------
+
+We observe that execution time is constant which makes sense because no matter
+What time slice we are always running some process when possible. In real CPU's increasing
+Time slice increases execution time because we need to spend time changing processes which is an expensive OS operation.
+
+Problem 3B (Preemptive Priority)
+----------
+
+We can implement preemption. If a process stays in the ready queue for a certain amount of time, to prevent starvation,
+We can preempt the currently running process and start running the low priority process.
+
+Problem 4 (The Priority Inversion Problem)
+---------
+
+We can give Z a high priority (for example the priority of X) while it is in its critical section so that it doesn't
+Preempt. Once we finish running the critical section we lower the priority back to where it was originally so that X
+Can run instead of Z.
